@@ -123,10 +123,10 @@ button {
   text-decoration: none;
 }
 
-.ListItem_masteryRank {
+.ListItem_progenitorElement {
   align-items: center;
   background-color: transparent;
-  background-image: url(/src/assets/MasteryRank.png);
+  /*background-image: url(/src/assets/MasteryRank.png);*/
   background-position: 0;
   background-repeat: no-repeat;
   background-size: contain;
@@ -134,10 +134,9 @@ button {
   display: flex;
   font-size: calc(1.2rem * var(--scaling-factor));
   font-weight: 700;
-  height: calc(1.2rem * var(--scaling-factor));
+  height: 1.2rem;
   justify-content: flex-start;
   left: 0;
-  margin: calc(.5rem * var(--scaling-factor));
   padding-left: calc(1.7rem * var(--scaling-factor));
   position: absolute;
   text-shadow: 0 0 1px #000,0 0 1px #000,0 0 1px #000,0 0 1px #000;
@@ -145,7 +144,7 @@ button {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  width: calc(1.2rem * var(--scaling-factor));
+  width: 1.2rem;
   z-index: 1;
 }
 
