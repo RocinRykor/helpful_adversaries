@@ -11,13 +11,24 @@ const Weapons: React.FC<WeaponsProps> = ({weaponsList}) => {
 
     const [weapons, setWeapons] = React.useState(weaponsList);
 
-    function handleCheck(updater: CallableFunction, itemList: Array<Weapon>, itemToCheck: Weapon) {
+    function handleToggle(updater: CallableFunction, itemList: Array<Weapon>, itemToCheck: Weapon) {
         // Create a new array from the current state so as not to directly mutate it
         let newItems = [...itemList];
 
         // Find the item and toggle the isChecked property
         const itemIndex = newItems.findIndex(item => item.weaponName === itemToCheck.weaponName);
         newItems[itemIndex].toggleAvailability();
+
+        updater(newItems);
+    };
+
+    function handleTrack(updater: CallableFunction, itemList: Array<Weapon>, itemToCheck: Weapon) {
+        // Create a new array from the current state so as not to directly mutate it
+        let newItems = [...itemList];
+
+        // Find the item and toggle the isChecked property
+        const itemIndex = newItems.findIndex(item => item.weaponName === itemToCheck.weaponName);
+        newItems[itemIndex].toggleTracked();
 
         updater(newItems);
     };
@@ -57,7 +68,7 @@ const Weapons: React.FC<WeaponsProps> = ({weaponsList}) => {
             <button onClick={resetWeapons}>Reset</button>
         {
             weapons.map((weapon: Weapon) =>
-                WeaponCard(weapon, weapons, setWeapons, handleCheck)
+                WeaponCard(weapon, weapons, setWeapons, handleToggle, handleTrack)
             )
         }
         </div>

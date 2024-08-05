@@ -3,46 +3,46 @@ import React from "react";
 import Progenitor from "../classes/Progenitor.tsx";
 import {progenitorList} from "../static/progenitors.tsx";
 import ProgenitorCard from "./ProgenitorCard.tsx";
+import ElementSelector from "./ElementSelector.tsx";
 
 function Progenitors() {
 
     // @ts-ignore
     const [progenitors, setProgenitors] = React.useState(progenitorList);
+    const [currentElement, setElement] = React.useState("All");
 
-    // function handleCheck(updater: CallableFunction, itemList: Array<Weapon>, itemToCheck: Weapon) {
-    //     // Create a new array from the current state so as not to directly mutate it
-    //     let newItems = [...itemList];
-    //
-    //     // Find the item and toggle the isChecked property
-    //     const itemIndex = newItems.findIndex(item => item.weaponName === itemToCheck.weaponName);
-    //     newItems[itemIndex].toggleAvailability();
-    //
-    //     updater(newItems);
-    // };
+    const elements = [
+        "All", //Not an actual element, used to display all progenitors
+        "Cold",
+        "Electricity",
+        "Heat",
+        "Impact",
+        "Magnetic",
+        "Radiation",
+        "Toxin"
+    ];
 
-    // function handleReset(weaponList: Array<Weapon>, stateFunc: CallableFunction) {
-    //     /*
-    //      * weaponList: An array of Weapons.
-    //      * stateFunc: The React function used to update the state of the weaponList.
-    //      */
-    //     // Create a new array from the current state so as not to directly mutate it
-    //     var newItems = [...weaponList];
-    //     newItems.forEach((weapon) => {
-    //         weapon.isChecked = false;
-    //     });
-    //     stateFunc(newItems);
-    // };
+    const handleElementImageClick = (element: string) => {
+        setElement(element);
 
-    // function resetWeapons() {
-    //     handleReset(weapons, setWeapons);
-    // }
+        // If "All" return a complete list of the progenitors
+        if (element === "All") {
+            setProgenitors(progenitorList);
+            return;
+        }
+
+        // else set progenitors to contain only those matching the selected element
+        const updatedProgenitors = progenitorList.filter(progenitor => progenitor.elementName === element);
+
+        setProgenitors(updatedProgenitors); // Update state with new array
+    };
+
 
     function sortByName(weaponList: Array<Progenitor>) {
-        weaponList.sort( (a, b) => {
+        weaponList.sort((a, b) => {
             if (a.warframeName < b.warframeName) {
                 return -1;
-            }
-            else {
+            } else {
                 return 1;
             }
         });
@@ -51,12 +51,26 @@ function Progenitors() {
     sortByName(progenitors);
 
     return (
-        <div className="ListContainer">
-            {
-                progenitors.map((progenitor: Progenitor) =>
-                    ProgenitorCard(progenitor)
-                )
-            }
+        <div>
+            <div className={"element_bar"}>
+                {
+                    elements.map((element, index) => (
+                        <ElementSelector
+                            key={index}
+                            element={element}
+                            currentElement={currentElement}
+                            onElementImageClick={handleElementImageClick}
+                        />
+                    ))
+                }
+            </div>
+            <div className="ListContainer">
+                {
+                    progenitors.map((progenitor: Progenitor) =>
+                        ProgenitorCard(progenitor)
+                    )
+                }
+            </div>
         </div>
     );
 }

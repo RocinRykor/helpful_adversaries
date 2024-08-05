@@ -6,6 +6,8 @@ import Progenitor from "./pages/Progenitor.tsx";
 
 function App() {
 
+    document.addEventListener('contextmenu', event => event.preventDefault());
+
     return (
         <Router>
             <Routes>

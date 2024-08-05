@@ -1,16 +1,21 @@
 class Weapon {
     public isChecked: boolean;
     public weaponName: string;
-    public weaponImage: string;
+    public isTracked: boolean;
 
     constructor(name: string) {
         this.isChecked = false;
         this.weaponName = name;
-        this.weaponImage = `/assets/weapons/${this.weaponName}.png`
+        this.isTracked = false;
     }
 
     toggleAvailability() {
         this.isChecked = !this.isChecked;
+    }
+
+    toggleTracked() {
+        console.log("toggleTracked");
+        this.isTracked = !this.isTracked;
     }
 }
 
