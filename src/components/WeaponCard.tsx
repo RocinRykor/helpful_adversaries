@@ -24,7 +24,7 @@ export default function WeaponCard (weapon: Weapon, weaponList: Array<Weapon>, s
              style={weapon.isChecked ? {opacity: "0.5"} : {}}>
             <div className={weapon.isTracked ? "ListItem_itemTexture tracked" : "ListItem_itemTexture"}>
                 <div style={{width: "100%", display: "flex", justifyContent: "center"}}>
-                    <img draggable={false} src={`src/assets/weapons/${weapon.weaponName}.png`}
+                    <img draggable={false} src={`/assets/weapons/${weapon.weaponName}.png`}
                          width="128" height="128" alt={weapon.weaponName} loading="lazy"/>
                 </div>
                 <figcaption><a className="ListItem_text">{weapon.weaponName}</a></figcaption>

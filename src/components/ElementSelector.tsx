@@ -14,11 +14,11 @@ const ElementSelector: React.FC<ElementSelector> = ({element, onElementImageClic
         >
             {element === "All" ?
                 <div>
-                    <img src={`src/assets/elements/${element}.png`} alt={element} width="24px"/>
+                    <img src={`/assets/elements/${element}.png`} alt={element} width="24px"/>
                     {/*<span>All</span>*/}
                 </div>
                 :
-                <img src={`src/assets/elements/${element}.png`} alt={element} width="32px"/>
+                <img src={`/assets/elements/${element}.png`} alt={element} width="32px"/>
             }
         </div>
     );
